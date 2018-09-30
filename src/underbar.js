@@ -108,8 +108,57 @@
 
   // Produce a duplicate-free version of the array.
   _.uniq = function(array, isSorted, iterator) {
-  };
 
+    if (typeof isSorted === 'function') {
+      iterator = isSorted;
+      isSorted === false;
+    }
+
+    var unique = {};
+
+    for (var i = 0; i < array.length; i++) {
+      unique[array[i]] = array[i];
+    }
+
+    var output = [];
+
+    if (iterator) {
+      if (isSorted === true) {
+        var iterations = [];
+        for (var i = 0; i < array.length; i++) {
+          if (!iterations.includes(iterator(array[i]))) {
+            iterations.push(iterator(array[i]));
+            output.push(array[i]);
+          }
+        }
+      } else {
+        for (var i = 0; i < array.length; i++) {
+          var iterations = [];
+          if (!iterations.includes(iterator(array[i]))) {
+            iterations.push(iterator(array[i]));
+            output.push(array[i]);
+          }
+        }
+      }
+      return output;
+    }
+
+    if (isSorted === true) {
+      for (var i = 0; i < array.length; i++) {
+        if (!output.includes(array[i])) {
+          output.push(array[i]);
+        }
+      }
+      return output;
+    }
+
+    for (var i = 0; i < array.length; i++) {
+      if (unique[array[i]] === array[i] && !output.includes(array[i]) ) {
+        output.push(array[i]);
+      }
+    }
+    return output;
+  };
 
   // Return the results of applying an iterator to each element.
   _.map = function(collection, iterator) {
