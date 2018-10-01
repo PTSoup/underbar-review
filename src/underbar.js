@@ -167,7 +167,7 @@
     // the members, it also maintains an array of results.
 
     var output = [];
-    _.each(collection, function(element){
+    _.each(collection, function(element) {
       output.push(iterator(element));
     });
     return output;
@@ -232,9 +232,9 @@
     } else {
       accumulator = accumulator;
     }
-    _.each(collection, function(element){
-       accumulator = iterator(accumulator, element); // 1 * 2 = 2
-    })
+    _.each(collection, function(element) {
+      accumulator = iterator(accumulator, element); // 1 * 2 = 2
+    });
     return accumulator;
   };
 
