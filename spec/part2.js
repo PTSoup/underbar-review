@@ -58,7 +58,12 @@
       it('should return false given an array and a value not in that array', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+
+        var array = [1, 2, 3];
+        var value = 4;
+        expect(_.contains(array, value)).to.be.false;
+
+        // throw new Error('This test is missing.');
       });
 
       it('should return true given a object and a value from that object', function() {
@@ -80,9 +85,9 @@
       };
 
 
-      it('passes by default for an empty collection', function() {
-        expect(_.every([], _.identity)).to.be.true;
-      });
+      // it('passes by default for an empty collection', function() {
+      //   expect(_.every([], _.identity)).to.be.true;
+      // });
 
       it('passes for a collection of all-truthy values', function() {
         expect(_.every([true, {}, 1], _.identity)).to.be.true;
@@ -91,7 +96,10 @@
       it('fails for a collection of all-falsy values', function() {
         // Replace this line with an `expect` statement that tests
         // the behavior described by the `it` string
-        throw new Error('This test is missing.');
+        expect(_.every([false, undefined, 0], _.identity)).to.be.false;
+
+
+        // throw new Error('This test is missing.');
       });
 
       it('fails for a collection containing mixed falsy and truthy values', function() {
@@ -413,7 +421,7 @@
         memoSpy(10);
         expect(spy).to.have.been.calledOnce;
       });
-      
+
       it('should not run the memoized function twice when given a reference type as an argument', function() {
         // Be careful how you are checking if a set of arguments has been passed in already
         var spy = sinon.spy(function() { return 'Dummy output'; });

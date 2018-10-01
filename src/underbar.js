@@ -212,16 +212,16 @@
   //   }); // should be 5, regardless of the iterator function passed in
   //          No accumulator is given so the first element is used.
   _.reduce = function(collection, iterator, accumulator) {
-    if (accumulator === undefined) { 
+    if (accumulator === undefined) {
       collection = Array.prototype.slice.call(arguments[0]);
       accumulator = collection[0];
       collection = collection.slice(1);
     } else {
       accumulator = accumulator;
     }
-    
+
     _.each(collection, function(element) {
-      accumulator = iterator(accumulator, element); 
+      accumulator = iterator(accumulator, element);
     });
     return accumulator;
   };
@@ -240,8 +240,50 @@
 
 
   // Determine whether all of the elements match a truth test.
-  _.every = function(collection, iterator) {
+  // collection = [1, undefined, true]
+  _.every = function(collection, iterator) { // ([1, undefined, true],)
     // TIP: Try re-using reduce() here.
+
+    // declare bool = true
+    // iterate over the collection
+    // Pass each item to the iterator
+    // if not iterator value returns "false"
+    // return false
+
+    iterator = iterator || _.identity;
+
+
+    return _.reduce(collection, function(isTrue, item) {
+
+      // apply the iterator and test to see if this returns "true";
+      // if it returns true, then isTrue = 'true'
+      // continue iterating
+      // if it returns false, then isTrue = 'false';
+      //return isTrue;
+
+      // isTrue = iterator(item); // isTrue = _.identity(undefined) = undefined;
+
+      if (isTrue === false) {
+        return false;
+      }
+
+      if (iterator(item) == false) { // _.identity(val);
+        return false;
+      } else {
+        return true;
+      }
+
+      // if (iterator(item) == true) { // undefined == true =/= false;
+      //   isTrue = true;
+      //   return isTrue;
+      // } else {
+      //   // isTrue = false;
+      //   // return isTrue;
+      //   return false; // return false; == isTrue = false;
+      // }
+
+    }, true); //false
+
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
