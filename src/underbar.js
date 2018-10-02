@@ -241,48 +241,19 @@
 
   // Determine whether all of the elements match a truth test.
   // collection = [1, undefined, true]
-  _.every = function(collection, iterator) { // ([1, undefined, true],)
+  _.every = function(collection, iterator) {  
     // TIP: Try re-using reduce() here.
-
-    // declare bool = true
-    // iterate over the collection
-    // Pass each item to the iterator
-    // if not iterator value returns "false"
-    // return false
-
-    iterator = iterator || _.identity;
-
-
+    iterator = iterator || _.identity;  
     return _.reduce(collection, function(isTrue, item) {
-
-      // apply the iterator and test to see if this returns "true";
-      // if it returns true, then isTrue = 'true'
-      // continue iterating
-      // if it returns false, then isTrue = 'false';
-      //return isTrue;
-
-      // isTrue = iterator(item); // isTrue = _.identity(undefined) = undefined;
-
-      if (isTrue === false) {
-        return false;
+      if (isTrue === false) {  
+        return false;  
       }
-
-      if (iterator(item) == false) { // _.identity(val);
-        return false;
+      if (!iterator(item)) { // _.identity(val); evalute  given item = undefined
+        return false; 
       } else {
-        return true;
+        return true;  
       }
-
-      // if (iterator(item) == true) { // undefined == true =/= false;
-      //   isTrue = true;
-      //   return isTrue;
-      // } else {
-      //   // isTrue = false;
-      //   // return isTrue;
-      //   return false; // return false; == isTrue = false;
-      // }
-
-    }, true); //false
+    }, true);  
 
   };
 
