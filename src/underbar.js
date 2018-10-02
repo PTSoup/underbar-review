@@ -261,6 +261,27 @@
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
+    // Key difference ANY for _.some and ALL for _.every.
+    // bool var 
+    var isTrue = false;
+    // initial value will be set to false (opposite of _.every)
+    iterator = iterator || _.identity;
+    return _.every(collection, function(value){
+      
+      return iterator(value) === true;
+    });
+    // iterate over collection
+    // apply an iterator to each item in the collection
+    // if the item passes the test 
+    //   return true;
+    // else 
+    //   return false;
+    // return hasSomePassed
+
+    
+
+
+
   };
 
 
