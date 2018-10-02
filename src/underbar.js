@@ -266,7 +266,7 @@
     var isTrue = false;
     // initial value will be set to false (opposite of _.every)
     iterator = iterator || _.identity;
-    return _.every(collection, function(value){
+    return _.every(collection, function(value) {
       
       return iterator(value) === true;
     });
