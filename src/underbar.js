@@ -238,52 +238,32 @@
     }, false);
   };
 
-
   // Determine whether all of the elements match a truth test.
   // collection = [1, undefined, true]
   _.every = function(collection, iterator) {  
     // TIP: Try re-using reduce() here.
     iterator = iterator || _.identity;  
-    return _.reduce(collection, function(isTrue, item) {
-      if (isTrue === false) {  
+    return _.reduce(collection, function(isTrue, item) { // item = true;
+      if (isTrue === false) { //true
         return false;  
       }
-      if (!iterator(item)) { // _.identity(val); evalute  given item = undefined
+      if (!iterator(item)) { // !iterator(true) = false; = !!
         return false; 
       } else {
         return true;  
       }
     }, true);  
-
   };
 
   // Determine whether any of the elements pass a truth test. If no iterator is
   // provided, provide a default one
   _.some = function(collection, iterator) {
     // TIP: There's a very clever way to re-use every() here.
-    // Key difference ANY for _.some and ALL for _.every.
-    // bool var 
-    var isTrue = false;
-    // initial value will be set to false (opposite of _.every)
-    iterator = iterator || _.identity;
-    return _.every(collection, function(value) {
-      
-      return iterator(value) === true;
+    iterator = iterator || _.identity; 
+    return !_.every(collection, function(value) {
+      return !iterator(value); 
     });
-    // iterate over collection
-    // apply an iterator to each item in the collection
-    // if the item passes the test 
-    //   return true;
-    // else 
-    //   return false;
-    // return hasSomePassed
-
-    
-
-
-
   };
-
 
   /**
    * OBJECTS
