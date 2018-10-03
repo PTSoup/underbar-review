@@ -348,7 +348,41 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
+
+  // O - fn
+  // I - function
+  // C - time
+  // E - _.memoize(1,2) = 3
+
+
+
   _.memoize = function(func) {
+
+    // declare a cache
+
+    // check to see the function has been run
+    // if it hasn't
+    //create key and value (key1 = add(2,3) key2 = add(4,5) key3 = mult(1,4))
+    // key = func
+    // value = results of the function
+    // run the function that is passed thru, and then store the results in the cache.
+    // if it has
+    // grab the cache
+    // return the cache after the function has run
+
+    var cache = {};
+
+    var argKeys = Object.keys(cache);
+
+    if (argKeys.includes(func)) {
+      return cache.func;
+    } else {
+      var key = func;
+      cache[func] = func.apply(null, ...arguments);
+    }
+
+    return cache;
+
   };
 
   // Delays a function for the given number of milliseconds, and then calls
