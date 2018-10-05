@@ -340,6 +340,7 @@
     };
   };
 
+
   // Memorize an expensive function's results by storing them. You may assume
   // that the function only takes primitives as arguments.
   // memoize could be renamed to oncePerUniqueArgumentList; memoize does the
@@ -348,41 +349,21 @@
   // _.memoize should return a function that, when called, will check if it has
   // already computed the result for the given argument and return that value
   // instead if possible.
-
-  // O - fn
-  // I - function
-  // C - time
-  // E - _.memoize(1,2) = 3
-
-
-
   _.memoize = function(func) {
-
-    // declare a cache
-
-    // check to see the function has been run
-    // if it hasn't
-    //create key and value (key1 = add(2,3) key2 = add(4,5) key3 = mult(1,4))
-    // key = func
-    // value = results of the function
-    // run the function that is passed thru, and then store the results in the cache.
-    // if it has
-    // grab the cache
-    // return the cache after the function has run
 
     var cache = {};
 
-    var argKeys = Object.keys(cache);
+    return function() {
 
-    if (argKeys.includes(func)) {
-      return cache.func;
-    } else {
-      var key = func;
-      cache[func] = func.apply(null, ...arguments);
-    }
+      var argKeys = JSON.stringify(arguments);
 
-    return cache;
+      if(!cache[argKeys]) {
+        cache[argKeys] = func.apply(this, arguments);
+      }
 
+      return cache[argKeys];
+
+    };
   };
 
   // Delays a function for the given number of milliseconds, and then calls
@@ -392,6 +373,11 @@
   // parameter. For example _.delay(someFunction, 500, 'a', 'b') will
   // call someFunction('a', 'b') after 500ms
   _.delay = function(func, wait) {
+
+    var args = Array.prototype.slice.call(arguments, 2);
+
+    setTimeout(function(){func.apply(this, args);}, wait);
+
   };
 
 
