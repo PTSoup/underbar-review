@@ -357,7 +357,7 @@
 
       var argKeys = JSON.stringify(arguments);
 
-      if(!cache[argKeys]) {
+      if (!cache[argKeys]) {
         cache[argKeys] = func.apply(this, arguments);
       }
 
@@ -376,7 +376,7 @@
 
     var args = Array.prototype.slice.call(arguments, 2);
 
-    setTimeout(function(){func.apply(this, args);}, wait);
+    setTimeout(function() { func.apply(this, args); }, wait);
 
   };
 
@@ -392,6 +392,17 @@
   // input array. For a tip on how to make a copy of an array, see:
   // http://mdn.io/Array.prototype.slice
   _.shuffle = function(array) {
+
+    var args = Array.prototype.slice.call(array);
+    var output = [];
+
+    for (var i = array.length - 1; i >= 0; i--) {
+      var index = Math.floor(Math.random() * (i));
+      output.push(Number(args.splice(index, 1).toString()));
+    }
+
+    return output;
+
   };
 
 
