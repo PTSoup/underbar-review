@@ -357,7 +357,7 @@
 
       var argKeys = JSON.stringify(arguments);
 
-      if(!cache[argKeys]) {
+      if (!cache[argKeys]) {
         cache[argKeys] = func.apply(this, arguments);
       }
 
@@ -376,7 +376,7 @@
 
     var args = Array.prototype.slice.call(arguments, 2);
 
-    setTimeout(function(){func.apply(this, args);}, wait);
+    setTimeout(function() { func.apply(this, args); }, wait);
 
   };
 
